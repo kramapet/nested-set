@@ -1,7 +1,9 @@
 {
-    "name": "kramapet/nested_tree",
+    "name": "kramapet/nested_tree-pdo",
+	"type": "library",
     "description": "Nested Tree for PDO",
     "license": "MIT",
+	"keywords": [ "pdo", "nested tree"],
     "authors": [
         {
             "name": "Petr Kramar",
