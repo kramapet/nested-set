@@ -11,6 +11,7 @@ class TreeTest extends BaseTree_TestCase {
 	private $tree;
 	
 	protected function setUp() {
+		parent::setUp();
 		$table = new Table('tree', 'name', 'lft', 'rgt');
 		$this->tree = new Tree(self::getPdo(), $table);
 	}
@@ -59,6 +60,18 @@ class TreeTest extends BaseTree_TestCase {
 		foreach ($this->tree->getSinglePath('foo') as $r) {
 			$this->assertTrue($expected_values[$r['name']]);
 		}
+	}
+
+	public function testAddSibling() {
+		$sibling = 'beta';
+		$new = 'foo';
+
+		$this->assertTrue($this->tree->addSibling($sibling, $new));
+	}
+
+	public function testRemoveNode() {
+		$id = 'beta';
+		$this->assertTrue($this->tree->removeNode($id));
 	}
 	
 }
