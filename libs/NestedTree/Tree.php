@@ -82,6 +82,7 @@ class Tree implements ITree {
 		$rgtCol = $this->table->getRight();
 
 		try {
+
 			$this->conn->beginTransaction();
 			$st = $this->conn->query("SELECT $lftCol FROM $tblName WHERE $pk = " . $this->conn->quote($parent));
 			$row = $st->fetch();
@@ -96,9 +97,10 @@ class Tree implements ITree {
 			$this->conn->query("UPDATE $tblName SET $rgtCol = $rgtCol + 2 WHERE $rgtCol > " . $this->conn->quote($parent_lft));
 
 			$this->conn->query("INSERT INTO $tblName ($pk, $lftCol, $rgtCol) VALUES ($id, $lft, $rgt)");
+			
+			$this->conn->commit();
 
 			return true;
-
 
 		} catch (\PDOException $pe) {
 			$this->conn->rollback();
@@ -112,7 +114,30 @@ class Tree implements ITree {
 	}
 
 	public function removeNode($id) {
-		throw new \Exception("Method is not implemented");
+		$tblName = $this->table->getTableName();
+		$pk = $this->table->getPrimaryKey();
+		$lftCol = $this->table->getLeft();
+		$rgtCol = $this->table->getRight();
+		
+		try {
+			$this->conn->beginTransaction();
+				
+			$id_values = $this->conn->query("SELECT $lftCol, $rgtCol FROM $tblName WHERE $pk = " . $this->conn->quote($id))->fetch();
+			$id_lft = $this->conn->quote($id_values[$lftCol]);
+			$id_rgt = $this->conn->quote($id_values[$rgtCol]);
+			$id_width = $this->conn->quote(($id_rgt - $id_lft) + 1);
+
+			$this->conn->query("DELETE FROM $tblName WHERE $lftCol BETWEEN $id_lft AND $id_rgt");
+			$this->conn->query("UPDATE $tblName SET $lftCol = $lftCol - $id_width WHERE $lftCol > $id_rgt");
+			$this->conn->query("UPDATE $tblName SET $rgtCol = $rgtCol - $id_width WHERE $rgtCol > $id_rgt");
+			$this->conn->commit();
+
+			return true;
+		} catch (\PDOException $pe) {
+			$this->conn->rollback();
+			return false;
+		}
+
 	}
 
 }
