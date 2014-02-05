@@ -7,11 +7,18 @@ namespace NestedTree;
 
 interface ITreeItem {
 	/**
-	 * Is leaf? (last node in branch)
-	 * @return boolean
+	 * Add child
+	 * @param ITreeItem $child
+	 * @return void
 	 */
-	public function isLeaf();
+	public function addChild(ITreeItem $child);
 
+	/**
+	 * get childs
+	 * @return ITreeItem[]|NULL
+	 */
+	public function getChilds();
+		
 	/**
 	 * Get data
 	 * @return mixed
@@ -23,6 +30,13 @@ interface ITreeItem {
 	 * @return ITreeItem|NULL
 	 */
 	public function getParent();
+
+	/**
+	 * Is leaf? (last node in branch)
+	 * @return boolean
+	 */
+	public function isLeaf();
+
 
 	/**
 	 * set parent
