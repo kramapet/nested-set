@@ -10,6 +10,15 @@ class TreeItemTest extends \PHPUnit_Framework_TestCase {
 	public function setUp() {
 	}
 
+	public function testAddChild() {
+		$parent = new TreeItem(NULL, 'parent');
+		$child = new TreeItem($parent, 'child');
+
+		$childs = $parent->getChilds();
+		$this->assertEquals($child, $childs[0]);
+
+	} 
+
 	public function testIsLeaf() {
 		$item = new TreeItem();
 		$this->assertTrue($item->isLeaf());
