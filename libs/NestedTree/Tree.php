@@ -95,22 +95,46 @@ class Tree implements ITree {
 
 			$this->conn->query("UPDATE $tblName SET $lftCol = $lftCol + 2 WHERE $lftCol > " . $this->conn->quote($parent_lft));
 			$this->conn->query("UPDATE $tblName SET $rgtCol = $rgtCol + 2 WHERE $rgtCol > " . $this->conn->quote($parent_lft));
-
 			$this->conn->query("INSERT INTO $tblName ($pk, $lftCol, $rgtCol) VALUES ($id, $lft, $rgt)");
-			
 			$this->conn->commit();
-
 			return true;
 
 		} catch (\PDOException $pe) {
 			$this->conn->rollback();
-
 			return false;
 		}
 	}
 
 	public function addSibling($sibling, $id) {
-		throw new \Exception("Method is not implemented");
+		$tblName = $this->table->getTableName();
+		$pk = $this->table->getPrimaryKey();
+		$lftCol = $this->table->getLeft();
+		$rgtCol = $this->table->getRight();
+
+		try {
+			$this->conn->beginTransaction();
+
+			$res = $this->conn->query("SELECT $rgtCol FROM $tblName WHERE $pk = " . $this->conn->quote($sibling));
+			$row = $res->fetch();
+
+			$sibling_rgt = $this->conn->quote($row[$rgtCol]);
+
+			$id_quoted = $this->conn->quote($id);
+			$id_lft = $sibling_rgt + 1;
+			$id_rgt = $sibling_rgt + 2;
+			
+			$this->conn->query("UPDATE $tblName SET $lftCol = $sibling_rgt + 2 WHERE $lftCol > $sibling_rgt");
+			$this->conn->query("UPDATE $tblName SET $rgtCol = $sibling_rgt + 2 WHERE $rgtCol > $sibling_rgt");
+			$this->conn->query("INSERT INTO $tblName ($pk, $lftCol, $rgtCol) VALUES ($id_quoted, $id_lft, $id_rgt)");
+
+			$this->conn->commit();
+
+			return true;
+		} catch (\PDOException $pe) {
+
+			$this->conn->rollback();
+			return false;
+		}
 	}
 
 	public function removeNode($id) {
@@ -131,7 +155,6 @@ class Tree implements ITree {
 			$this->conn->query("UPDATE $tblName SET $lftCol = $lftCol - $id_width WHERE $lftCol > $id_rgt");
 			$this->conn->query("UPDATE $tblName SET $rgtCol = $rgtCol - $id_width WHERE $rgtCol > $id_rgt");
 			$this->conn->commit();
-
 			return true;
 		} catch (\PDOException $pe) {
 			$this->conn->rollback();
