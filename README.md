@@ -10,13 +10,10 @@ Install:
 
 Usage:
 
-<?php
+	use \NestedTree;
 
-use \NestedTree;
+	$pdo = new \PDO($dsn);
 
-$pdo = new \PDO($dsn);
+	$table = new NestedTree\Table('table_name', 'primary_key', 'colname_of_left_index', 'colname_of_right_index');
+	$tree = new NestedTree\Tree($pdo, $table);
 
-$table = new NestedTree\Table('table_name', 'primary_key', 'colname_of_left_index', 'colname_of_right_index');
-$tree = new NestedTree\Tree($pdo, $table);
-
-?>
