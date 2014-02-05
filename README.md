@@ -4,12 +4,13 @@ REF: http://mikehillyer.com/articles/managing-hierarchical-data-in-mysql/
 
 
 Install:
-	- clone git repository
-	- change directory into repository
-	- run 'composer install'
+- clone git repository
+- change directory into repository
+- run 'composer install'
 
 Usage:
 	<?php
+
 	use \NestedTree;
 
 	$pdo = new \PDO($dsn);
