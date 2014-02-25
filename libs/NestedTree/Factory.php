@@ -43,7 +43,7 @@ class Factory {
 					$item[self::DATA]
 				);
 			} else {
-				throw new \Exception("Something went wrong..");
+				throw new \Exception("Invalid tree");
 			}
 
 			$prev_lft = $item[self::LEFT];
