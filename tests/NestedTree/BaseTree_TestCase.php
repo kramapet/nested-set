@@ -6,6 +6,8 @@
 namespace Tests\NestedTree;
 
 abstract class BaseTree_TestCase extends \PHPUnit_Extensions_Database_TestCase {
+	const DATABASE = ':memory:';
+
 	/** @var \PDO */
 	private static $pdo;
 
@@ -18,7 +20,8 @@ abstract class BaseTree_TestCase extends \PHPUnit_Extensions_Database_TestCase {
 	 */
 	static public function getPdo() {
 		if (!self::$pdo) {
-			self::$pdo = new \PDO('sqlite:' . __DIR__ . '/datasets/db.sqlite');
+			self::$pdo = new \PDO('sqlite:' . self::DATABASE);
+			self::createSchema(self::$pdo, __DIR__ . '/datasets/schema.sql');
 		}
 
 		return self::$pdo;
@@ -30,8 +33,14 @@ abstract class BaseTree_TestCase extends \PHPUnit_Extensions_Database_TestCase {
 	final public function getConnection() {
 
 		if (!$this->conn) {
-			$this->conn = $this->createDefaultDBConnection(self::getPdo(), 'db.sqlite');	
+			$pdo = self::getPdo();
+			$this->conn = $this->createDefaultDBConnection(
+				self::getPdo(), 
+				self::DATABASE
+			);	
+
 		}
+
 
 		return $this->conn;
 	}
@@ -41,5 +50,15 @@ abstract class BaseTree_TestCase extends \PHPUnit_Extensions_Database_TestCase {
 	 */
 	public function getDataSet() {
 		return $this->createFlatXmlDataSet(__DIR__ . '/datasets/treeDb.xml');
+	}
+
+	private static function createSchema(\PDO $pdo, $fn) {
+		$sql = file_get_contents($fn);
+
+		try {
+			$pdo->query($sql);
+		} catch (\PDOException $pe) {
+			throw $pe;
+		}
 	}
 }
