@@ -5,6 +5,10 @@
 
 namespace Tests\NestedTree;
 
+use \NestedTree,
+	NestedTree\Table,
+	NestedTree\Tree;
+
 abstract class BaseTree_TestCase extends \PHPUnit_Extensions_Database_TestCase {
 	const DATABASE = ':memory:';
 
@@ -43,6 +47,13 @@ abstract class BaseTree_TestCase extends \PHPUnit_Extensions_Database_TestCase {
 
 
 		return $this->conn;
+	}
+
+	protected function createTree() {
+		return new Tree(
+			self::getPdo(), 
+			new Table('tree', 'name', 'lft', 'rgt')
+		);
 	}
 
 	/**
