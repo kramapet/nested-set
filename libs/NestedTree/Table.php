@@ -22,11 +22,10 @@ class Table implements ITable {
 	 * @param  string $pk primary key
 	 * @param  string $lft column name for left side of element
 	 * @param  string $rgt column name for right side of element
-	 * @param  array $extra list of column names used for data
 	 * @throws \Exception when empty or non-string variable is passed in or 
 	 *                    total count of arguments is not equal to 4
 	 */
-	public function __construct($name, $pk, $lft, $rgt, array $extra = array()) {
+	public function __construct($name, $pk, $lft, $rgt) {
 		if (func_num_args() != 4) {
 			throw new \Exception("Count of arguments passed in constructor must be equal to 4");
 		}
@@ -41,7 +40,6 @@ class Table implements ITable {
 		$this->primary_key = $pk;
 		$this->left = $lft;
 		$this->right = $rgt;
-		$this->extra = $extra;
 	}
 
 
@@ -62,7 +60,4 @@ class Table implements ITable {
 		return $this->right;
 	}
 
-	public function getExtra() {
-		return $this->extra;
-	}
 }
