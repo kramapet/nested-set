@@ -21,7 +21,7 @@ abstract class BaseTree_TestCase extends \PHPUnit_Extensions_Database_TestCase {
 	static public function getPdo() {
 		if (!self::$pdo) {
 			self::$pdo = new \PDO('sqlite:' . self::DATABASE);
-			self::createSchema(self::$pdo, __DIR__ . '/datasets/schema.sql');
+			self::createSchema(self::$pdo, __DIR__ . '/datasets/schema.sqlite');
 		}
 
 		return self::$pdo;
