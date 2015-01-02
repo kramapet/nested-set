@@ -29,4 +29,10 @@ interface ITable {
 	 * @return string
 	 */
 	function getRight();
+
+	/**
+	 * Get column names of extra fields used for data
+	 * @return string
+	 */
+	function getExtra();
 }
