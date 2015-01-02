@@ -3,4 +3,4 @@ CREATE TABLE "tree" (
 	"name" TEXT NOT NULL, 
 	"lft" INTEGER NOT NULL, 
 	"rgt" INTEGER NOT NULL
-)
+);
