@@ -7,7 +7,8 @@ namespace Tests\NestedTree;
 
 use \NestedTree,
 	NestedTree\Table,
-	NestedTree\Tree;
+	NestedTree\Tree,
+	NestedTree\QueryMappers\PDOQueryMapper;
 
 abstract class BaseTree_TestCase extends \PHPUnit_Extensions_Database_TestCase {
 	const DATABASE = ':memory:';
@@ -50,10 +51,13 @@ abstract class BaseTree_TestCase extends \PHPUnit_Extensions_Database_TestCase {
 	}
 
 	protected function createTree() {
-		return new Tree(
-			self::getPdo(), 
-			new Table('tree', 'name', 'lft', 'rgt')
-		);
+		$table = $this->createTable();
+		$mapper = new PDOQueryMapper(self::getPdo(), $table->getTableName());
+		return new Tree($mapper, $table);
+	}
+
+	protected function createTable() {
+		return new Table('tree', 'id', 'lft', 'rgt');
 	}
 
 	/**
