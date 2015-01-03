@@ -8,34 +8,22 @@ namespace NestedTree;
 
 interface ITree {
 	/**
-	 * Set table 
-	 * @param ITable $table
-	 */
-	function setTable(ITable $table);
-
-	/**
-	 * Set PDO connection
-	 * @param \PDO $conn
-	 */
-	function setConnection(\PDO $conn);
-
-	/**
 	 * Get whole tree
-	 * @return \PDOStatement
+	 * @return array|\Traversable
 	 */
 	function getTree();
 
 	/**
 	 * Get subtree
 	 * @param mixed $id
-	 * @return \PDOStatement
+	 * @return array|\Traversable
 	 */
 	function getSubTree($id);
 
 	/**
 	 * Get single path
 	 * @param mixed $id identifier
-	 * @return \PDOStatement
+	 * @return array|\Traversable
 	 */
 	function getSinglePath($id);
 	
