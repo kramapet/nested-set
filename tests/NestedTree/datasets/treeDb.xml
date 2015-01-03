@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <dataset>
-	<tree name="alpha" 		lft="1" 	rgt="16" />
-	<tree name="beta" 		lft="2" 	rgt="9" />
-	<tree name="gamma" 		lft="10" 	rgt="15" />
-	<tree name="delta" 		lft="3" 	rgt="4" />
-	<tree name="epsilon" 	lft="5" 	rgt="6" />
-	<tree name="zeta" 		lft="7" 	rgt="8" />
-	<tree name="eta" 		lft="11" 	rgt="12" />
-	<tree name="theta" 		lft="13" 	rgt="14" />
+	<tree id="1" name="alpha" lft="1" rgt="16" />
+	<tree id="2" name="beta" lft="2" rgt="9" />
+	<tree id="3" name="gamma" lft="10" rgt="15" />
+	<tree id="4" name="delta" lft="3" rgt="4" />
+	<tree id="5" name="epsilon" lft="5" rgt="6" />
+	<tree id="6" name="zeta" lft="7" rgt="8" />
+	<tree id="7" name="eta"	lft="11" rgt="12" />
+	<tree id="8" name="theta" lft="13" rgt="14" />
 </dataset>
