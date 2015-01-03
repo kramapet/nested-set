@@ -20,7 +20,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase {
 		$tree = $this->factory->createTree($this->getData());
 		$this->assertTrue($tree instanceof ITreeItem);
 		$childs = $tree->getChilds();
-		$this->assertFalse($childs == NULL);
+		$this->assertNotNull($childs);
 
 		$this->assertEquals($tree->getData(), 'alpha');
 		$this->assertEquals($childs[0]->getData(), 'beta');
