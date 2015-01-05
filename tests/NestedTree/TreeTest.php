@@ -33,8 +33,15 @@ class TreeTest extends BaseTree_TestCase {
 	}
 
 	public function testGetSubtree() {
-		$expected_values = array('beta' => true, 'delta' => true, 'zeta' => true, 'epsilon' => true);
-		foreach ($this->tree->getSubtree('beta') as $r) {
+		$beta_id = 2;
+		$expected_values = array(
+			'beta' => true, 
+			'delta' => true, 
+			'zeta' => true, 
+			'epsilon' => true
+		);
+
+		foreach ($this->tree->getSubtree($beta_id) as $r) {
 			$this->assertTrue($expected_values[$r['name']]); 
 		}
 	}
@@ -51,22 +58,35 @@ class TreeTest extends BaseTree_TestCase {
 	}
 
 	public function testAddChild() {
-		$parent = 'eta';
-		$id = array('name' => 'foo');
+		$parent = 7; // eta
+		$new['name'] = 'foo';
 
-		$this->tree->addChild($parent, $id);
-		
-		$expected_values = array('alpha' => true, 'gamma' => true, 'eta' => true, 'foo' => true);
-		foreach ($this->tree->getSinglePath('foo') as $r) {
+		$new = $this->tree->addChild($parent, $new);
+
+		$expected_values = array(
+			'alpha' => true, 
+			'gamma' => true, 
+			'eta' => true, 
+			'foo' => true
+		);
+
+		foreach ($this->tree->getSinglePath($new['id']) as $r) {
 			$this->assertTrue($expected_values[$r['name']]);
 		}
 	}
 
 	public function testAddSibling() {
-		$sibling = 'beta';
-		$new = array('name' => 'foo');
+		$sibling_id = 2;
+		$new['name'] = 'foo';
 
-		$this->assertTrue($this->tree->addSibling($sibling, $new));
+		$new = $this->tree->addSibling($sibling_id, $new);
+
+		$pdo = self::getPdo();
+		$sibling_id = $pdo->quote($sibling_id);
+		$sql = "SELECT rgt FROM tree WHERE id = $sibling_id";
+		$sibling_row = $pdo->query($sql)->fetch();
+
+		$this->assertEquals($sibling_row['rgt'], $new['lft'] - 1);
 	}
 
 	public function testRemoveNode() {
