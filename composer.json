@@ -12,7 +12,8 @@
     ],
     "require": {
 		"php": ">= 5.1.0",
-		"ext-PDO": "*"
+		"ext-PDO": "*",
+        "dibi/dibi": "dev-master"
     },
 	"require-dev": {
 		"phpunit/phpunit": "3.7.*",
