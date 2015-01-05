@@ -1,9 +1,9 @@
 {
-    "name": "kramapet/nested_tree-pdo",
+    "name": "kramapet/nested-set",
 	"type": "library",
-    "description": "Nested Tree for PDO",
+    "description": "PHP Nested Set implementation",
     "license": "MIT",
-	"keywords": [ "pdo", "nested tree"],
+	"keywords": [ "pdo", "dibi", "nested set"],
     "authors": [
         {
             "name": "Petr Kramar",
