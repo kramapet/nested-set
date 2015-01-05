@@ -45,20 +45,14 @@ class PDOQueryMapper implements IQueryMapper {
 
 	public function fetchSinglePath($id, $pk_field,  $left_field, $right_field) {
 		$id = $this->db->quote($id);
-		
-		$sql = "SELECT parent.* FROM {$this->table_name} as parent, {$this->table_name} as node
-			WHERE node.{$left_field} between parent.{$left_field} and parent.{$right_field}
-			AND node.{$pk_field} = $id";
+		$sql = "SELECT parent.* 
+				FROM {$this->table_name} as parent, 
+					 {$this->table_name} as node
+				WHERE node.{$left_field} 
+				BETWEEN parent.{$left_field} 
+				AND parent.{$right_field}
+				AND node.{$pk_field} = $id";
 		return $this->db->query($sql);
-	}
-
-	public function setFieldGreaterThan($field, $value, $greaterThan) {
-		$value = $this->db->quote($value);
-		$greaterThan = $this->db->quote($greaterThan);
-
-		$sql = "UPDATE {$this->table_name} SET $field = $value WHERE $field > $greaterThan";
-		$stmt = $this->db->query($sql);
-		return $stmt->rowCount();
 	}
 
 	public function addNToFieldGreaterThan($field, $n, $greaterThan) {
@@ -83,7 +77,8 @@ class PDOQueryMapper implements IQueryMapper {
 		$left = $this->db->quote($left);
 		$right = $this->db->quote($right);
 
-		$sql = "DELETE FROM {$this->table_name} WHERE $field BETWEEN $left AND $right";	
+		$sql = "DELETE FROM {$this->table_name} 
+				WHERE $field BETWEEN $left AND $right";	
 		$stmt = $this->db->query($sql);
 		return $stmt->rowCount();
 	}
@@ -91,7 +86,7 @@ class PDOQueryMapper implements IQueryMapper {
 	public function insert(array $fields) {
 		$sql = $this->buildInsertQuery($this->table_name, $fields);		
 		$stmt = $this->db->query($sql);
-		return $stmt->rowCount();
+		return $this->db->lastInsertId();
 	}
 
 	private function buildInsertQuery($tablename, array $fields) {
