@@ -1,14 +1,14 @@
 <?php
 /**
- * NestedTree\Factory test
+ * NestedSet\Factory test
  * @author Petr Kramar
  * @license MIT
  */
 
-namespace Tests\NestedTree;
+namespace Tests\NestedSet;
 
-use \NestedTree\Factory;
-use \NestedTree\ITreeItem;
+use \NestedSet\Factory;
+use \NestedSet\ITreeItem;
 
 class FactoryTest extends \PHPUnit_Framework_TestCase {
 

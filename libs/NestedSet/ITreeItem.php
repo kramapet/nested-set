@@ -3,7 +3,7 @@
  * @author Petr Kramar
  * @license MIT
  */
-namespace NestedTree;
+namespace NestedSet;
 
 interface ITreeItem {
 	/**

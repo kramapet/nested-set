@@ -1,14 +1,14 @@
 <?php
 /**
- * test for 'NestedTree\Tree'
+ * test for 'NestedSet\Tree'
  */
 
-namespace Tests\NestedTree;
+namespace Tests\NestedSet;
 
-use \NestedTree,
-	NestedTree\Table,
-	NestedTree\Tree,
-	NestedTree\QueryMappers\PDOQueryMapper;
+use \NestedSet,
+	NestedSet\Table,
+	NestedSet\Tree,
+	NestedSet\QueryMappers\PDOQueryMapper;
 
 abstract class BaseTree_TestCase extends \PHPUnit_Extensions_Database_TestCase {
 	const DATABASE = ':memory:';

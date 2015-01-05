@@ -1,9 +1,9 @@
 <?php
 /**
- * NestedTree\TreeItem test
+ * NestedSet\TreeItem test
  */
 
-use \NestedTree\TreeItem;
+use \NestedSet\TreeItem;
 
 class TreeItemTest extends \PHPUnit_Framework_TestCase {
 

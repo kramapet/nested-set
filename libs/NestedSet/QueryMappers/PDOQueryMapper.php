@@ -4,11 +4,11 @@
  * @licence MIT
  */
 
-namespace NestedTree\QueryMappers;
+namespace NestedSet\QueryMappers;
 
-use \NestedTree,
-	NestedTree\ITable,
-	NestedTree\IQueryMapper;
+use \NestedSet,
+	NestedSet\ITable,
+	NestedSet\IQueryMapper;
 
 class PDOQueryMapper implements IQueryMapper {
 

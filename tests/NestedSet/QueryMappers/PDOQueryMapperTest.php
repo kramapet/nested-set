@@ -3,12 +3,12 @@
  * Tests for PDO query mapper
  */
 
-namespace Tests\NestedTree\QueryMappers;
+namespace Tests\NestedSet\QueryMappers;
 
-use \NestedTree,
-	NestedTree\Table,
-	NestedTree\IQueryMapper,
-	NestedTree\QueryMappers\PDOQueryMapper;
+use \NestedSet,
+	NestedSet\Table,
+	NestedSet\IQueryMapper,
+	NestedSet\QueryMappers\PDOQueryMapper;
 
 
 class PDOQueryMapperTest extends AbstractQueryMapperTestCase {

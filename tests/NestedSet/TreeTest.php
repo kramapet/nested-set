@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\NestedTree;
+namespace Tests\NestedSet;
 
-use \NestedTree\Tree;
-use \NestedTree\Table;
+use \NestedSet\Tree;
+use \NestedSet\Table;
 
 class TreeTest extends BaseTree_TestCase {
 

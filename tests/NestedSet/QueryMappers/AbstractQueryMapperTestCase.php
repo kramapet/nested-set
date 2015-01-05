@@ -6,10 +6,10 @@
  */
 
 
-namespace Tests\NestedTree\QueryMappers;
+namespace Tests\NestedSet\QueryMappers;
 
-use \NestedTree\ITable,
-	\NestedTree\Table;
+use \NestedSet\ITable,
+	\NestedSet\Table;
 
 abstract class AbstractQueryMapperTestCase extends \PHPUnit_Framework_TestCase {
 
@@ -37,7 +37,7 @@ abstract class AbstractQueryMapperTestCase extends \PHPUnit_Framework_TestCase {
 	}
 
 	public function testIfMapperImplementsIQueryMapper() {
-		$this->assertInstanceOf('NestedTree\IQueryMapper', $this->getQueryMapper());
+		$this->assertInstanceOf('NestedSet\IQueryMapper', $this->getQueryMapper());
 	}	
 
 	public function testFetchAll() {

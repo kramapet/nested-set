@@ -4,7 +4,7 @@
  * @license MIT
  */
 
-namespace NestedTree;
+namespace NestedSet;
 
 class Factory {
 

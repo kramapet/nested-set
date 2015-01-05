@@ -3,7 +3,7 @@
  * @author Petr Kramar <kramar@masquerade.cz>
  * @license MIT
  */
-namespace NestedTree;
+namespace NestedSet;
 
 interface ITable {
 	/**

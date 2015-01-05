@@ -5,7 +5,7 @@
  * @description list of exceptions
  */
 
-namespace NestedTree;
+namespace NestedSet;
 
 class TreeManipulationFailedException extends \LogicException {
 }

@@ -21,9 +21,9 @@
 	},
 	"autoload": {
 		"psr-4": { 
-			"NestedTree\\": "libs/NestedTree"
+			"NestedSet\\": "libs/NestedSet"
 		},
-		"classmap": ["libs/NestedTree/exceptions.php"]
+		"classmap": ["libs/NestedSet/exceptions.php"]
 	},
 	"autoload-dev": {
 		"classmap": ["tests/"]

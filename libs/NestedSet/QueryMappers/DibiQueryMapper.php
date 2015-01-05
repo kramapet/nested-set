@@ -4,10 +4,10 @@
  * @licence MIT
  */
 
-namespace NestedTree\QueryMappers;
+namespace NestedSet\QueryMappers;
 
-use \NestedTree,
-	NestedTree\IQueryMapper;
+use \NestedSet,
+	NestedSet\IQueryMapper;
 
 class DibiQueryMapper implements IQueryMapper {
 

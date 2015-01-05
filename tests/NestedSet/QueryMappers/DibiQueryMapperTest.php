@@ -3,11 +3,11 @@
  * Tests for Dibi Query Mapper
  */
 
-namespace Tests\NestedTree\QueryMappers;
+namespace Tests\NestedSet\QueryMappers;
 
-use \NestedTree,
-	NestedTree\IQueryMapper,
-	NestedTree\QueryMappers\DibiQueryMapper;
+use \NestedSet,
+	NestedSet\IQueryMapper,
+	NestedSet\QueryMappers\DibiQueryMapper;
 
 class DibiQueryMapperTest extends AbstractQueryMapperTestCase {
 

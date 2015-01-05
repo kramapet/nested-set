@@ -1,11 +1,11 @@
 <?php
 /**
- * NestedTree\Table test
+ * NestedSet\Table test
  */
-namespace Tests\NestedTree;
+namespace Tests\NestedSet;
 
 
-use \NestedTree\Table;
+use \NestedSet\Table;
 
 class TableTest extends \PHPUnit_Framework_TestCase {
 	public function testTable() {
