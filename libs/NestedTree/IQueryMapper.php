@@ -45,17 +45,6 @@ interface IQueryMapper {
 	function fetchSinglePath($id, $pk, $left, $right);
 
 	/**
-	 * All record with $field > $greaterThan set to $value
-	 *
-	 * @param string $field
-	 * @param int $value
-	 * @param int $greaterThan
-	 * @return int affected rows
-	 * @throws TreeManipulationFailedException
-	 */
-	function setFieldGreaterThan($field, $value, $greaterThan);
-
-	/**
 	 * All records with column specified by $field will be added by $n 
 	 * if $field > $greaterThan
 	 * 
@@ -89,6 +78,7 @@ interface IQueryMapper {
 	 * @param string $field
 	 * @param int $left
 	 * @param int $right
+	 * @return int affected rows
 	 * @throws TreeManipulationFailedException
 	 */
 	function deleteBetweenField($field, $left, $right);
@@ -97,6 +87,7 @@ interface IQueryMapper {
 	 * Insert record
 	 *
 	 * @param array $fields [column name] => value
+	 * @return int last insert id
 	 * @throws TreeManipulationFailedException
 	 */
 	function insert(array $fields);
